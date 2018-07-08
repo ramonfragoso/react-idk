@@ -14,6 +14,7 @@ class LoginForm extends React.Component {
 	}
 
 	onChange = e => {
+		e.preventDefault();
 		this.setState(
 			{ data: {...this.state.data, [e.target.name]: e.target.value}
 		});
@@ -25,6 +26,7 @@ class LoginForm extends React.Component {
 		if(Object.keys(errors).length === 0) {
 			this.props.submit(this.state.data);
 		}
+		this.setState({state:{user_name:"", password:""}});
 	}
 
 	validate = (data) => {
@@ -38,7 +40,9 @@ class LoginForm extends React.Component {
 		const {data, errors} = this.state;
 		return (
 			<div className="container">
-				<img style={{width:"100%", marginTop:"15%"}}src={require('../../../images/iarl.png')}/>
+				<div style={{textAlign:"center"}}>
+					<img style={{width:"70%", marginTop:"15%"}}src={require('../../../images/iarl.png')}/>
+				</div>
 				<div className="ui segment" >
 					<h1>Login</h1>
 					<Form onSubmit={this.onSubmit}>
